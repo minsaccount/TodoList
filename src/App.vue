@@ -1,19 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <SchoolInfo></SchoolInfo>
+    <StudentInfo></StudentInfo>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SchoolInfo from "./components/SchoolInfo.vue";
+import StudentInfo from "./components/StudentInfo.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    SchoolInfo,
+    StudentInfo,
+  },
+};
 </script>
 
 <style>
