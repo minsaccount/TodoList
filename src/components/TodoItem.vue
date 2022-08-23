@@ -1,7 +1,11 @@
 <template>
   <div class="item">
     <label class="title">
-      <input type="checkbox" :checked="item.finished" />
+      <input
+        type="checkbox"
+        :checked="item.finished"
+        @click="handlecheck(item.id)"
+      />
       <span>{{ item.name }}</span>
     </label>
     <button class="button">删除</button>
@@ -10,8 +14,11 @@
 
 <script>
 export default {
-  props: {
-    item: Object,
+  props: ["item", "changeCheck"],
+  methods: {
+    handlecheck(id) {
+      this.changeCheck(id);
+    },
   },
 };
 </script>
@@ -21,6 +28,8 @@ export default {
   width: inherit;
   display: inline-block;
   margin-top: 10px;
+  background-color: antiquewhite;
+  border-radius: 4px;
   .title {
     line-height: 30px;
   }

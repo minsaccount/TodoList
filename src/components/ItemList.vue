@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <Item v-for="i in items" :key="i.id" :item="i" />
+    <Item v-for="i in items" :key="i.id" :item="i" :changeCheck="changeCheck" />
   </div>
 </template>
 
@@ -10,9 +10,7 @@ export default {
   components: {
     Item,
   },
-  props: {
-    items: [],
-  },
+  props: ["items", "changeCheck"], //最好不要修改
 };
 </script>
 

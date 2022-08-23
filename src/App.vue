@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <h3 class="title">To do list</h3> 
-    <Header :receive="receive"/>
-    <List :items="items"/>
-    <Footer></Footer>
+    <h3 class="title">To do list</h3>
+    <Header :receive="receive" />
+    <List :items="items" :changeCheck="changeCheck" />
+    <Footer />
   </div>
 </template>
 
@@ -29,7 +29,15 @@ export default {
   },
   methods: {
     receive(item) {
-      this.items.unshift(item)
+      this.items.unshift(item);
+    },
+    changeCheck(id) {
+      this.items.forEach((i) => {
+        if (i.id == id) {
+          i.finished = !i.finished;
+        }
+      });
+      console.log(id);
     },
   },
 };
