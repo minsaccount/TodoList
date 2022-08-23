@@ -2,26 +2,21 @@
   <div id="app">
     <h3 class="title">To do list</h3>
     <Header></Header>
-    <Item v-for="(i, index) in items" :key="index" :title="i" />
+    <List />
     <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from "./components/HeaderSearch.vue";
-import Item from "./components/TodoItem.vue";
 import Footer from "./components/FooterSum.vue";
+import List from "./components/ItemList.vue";
 export default {
   name: "App",
   components: {
     Header,
-    Item,
+    List,
     Footer,
-  },
-  data() {
-    return {
-      items: ["复习axios", "学习正则表达式", "踏青"],
-    };
   },
 };
 </script>
@@ -34,8 +29,8 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border:solid 2px rgb(142, 201, 241);;
-  border-radius:20px;
+  border: solid 2px rgb(142, 201, 241);
+  border-radius: 20px;
   .title {
     text-align: center;
   }
