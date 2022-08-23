@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <h3 class="title">To do list</h3>
-    <Header></Header>
-    <List />
+    <h3 class="title">To do list</h3> 
+    <Header :receive="receive"/>
+    <List :items="items"/>
     <Footer></Footer>
   </div>
 </template>
@@ -17,6 +17,20 @@ export default {
     Header,
     List,
     Footer,
+  },
+  data() {
+    return {
+      items: [
+        { id: "001", name: "复习axios", finished: false },
+        { id: "002", name: "学习正则表达式", finished: false },
+        { id: "003", name: "踏青", finished: false },
+      ],
+    };
+  },
+  methods: {
+    receive(item) {
+      this.items.unshift(item)
+    },
   },
 };
 </script>

@@ -1,15 +1,37 @@
 <template>
   <div class="header">
-    <input class="search" type="text" placeholder="请输入查找项" v-model="keyWord"/>
+    <input
+      class="search"
+      type="text"
+      placeholder="请输入添加的任务"
+      v-model.trim="item"
+      @keyup.enter="add"
+    />
   </div>
 </template>
 
 <script>
+import { nanoid } from "nanoid";
 export default {
+  props: ["receive"],
   data() {
     return {
-        keyWord:''
+      item: "",
     };
+  },
+  methods: {
+    add() {
+      if (!this.item) {
+        return alert("输入不能为空！");
+      }
+      const todoObj = {
+        id: nanoid(),
+        name: this.item,
+        finished: false,
+      };
+      this.receive(todoObj);
+      this.item = "";
+    },
   },
 };
 </script>

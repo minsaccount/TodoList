@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <Item v-for="(i, index) in newItems" :key="index" :title="i" />
+    <Item v-for="i in items" :key="i.id" :item="i" />
   </div>
 </template>
 
@@ -10,24 +10,14 @@ export default {
   components: {
     Item,
   },
-  data() {
-    return {
-      items: ["复习axios", "学习正则表达式", "踏青"],
-    };
-  },
-  computed: {
-    newItems() {
-      return this.items.filter((i) => {
-        return i.indexOf("") !== -1;
-      });
-    },
+  props: {
+    items: [],
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.list{
-    width: inherit;
- 
+.list {
+  width: inherit;
 }
 </style>
