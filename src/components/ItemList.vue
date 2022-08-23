@@ -18,4 +18,5 @@ export default {
 .list {
   width: inherit;
 }
+
 </style>
