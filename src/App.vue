@@ -1,30 +1,43 @@
 <template>
   <div id="app">
-    <SchoolInfo></SchoolInfo>
-    <StudentInfo></StudentInfo>
+    <h3 class="title">To do list</h3>
+    <Header></Header>
+    <Item v-for="(i, index) in items" :key="index" :title="i" />
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import SchoolInfo from "./components/SchoolInfo.vue";
-import StudentInfo from "./components/StudentInfo.vue";
-
+import Header from "./components/HeaderSearch.vue";
+import Item from "./components/TodoItem.vue";
+import Footer from "./components/FooterSum.vue";
 export default {
   name: "App",
   components: {
-    SchoolInfo,
-    StudentInfo,
+    Header,
+    Item,
+    Footer,
+  },
+  data() {
+    return {
+      items: ["复习axios", "学习正则表达式", "踏青"],
+    };
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 400px;
+  margin-top: 40px;
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border:solid 2px rgb(142, 201, 241);;
+  border-radius:20px;
+  .title {
+    text-align: center;
+  }
 }
 </style>
