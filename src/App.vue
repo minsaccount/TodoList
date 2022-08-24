@@ -7,7 +7,11 @@
       :changeCheck="changeCheck"
       :handleDelete="handleDelete"
     />
-    <Footer :items="items" :chengeSelect="chengeSelect" :handleClear='handleClear'/>
+    <Footer
+      :items="items"
+      :chengeSelect="chengeSelect"
+      :handleClear="handleClear"
+    />
   </div>
 </template>
 
@@ -24,11 +28,7 @@ export default {
   },
   data() {
     return {
-      items: [
-        { id: "001", name: "复习axios", finished: false },
-        { id: "002", name: "学习正则表达式", finished: false },
-        { id: "003", name: "踏青", finished: false },
-      ],
+      items: JSON.parse(localStorage.getItem("items")) || [],
     };
   },
   methods: {
@@ -55,6 +55,14 @@ export default {
     },
     handleClear() {
       this.items = this.items.filter((i) => !i.finished);
+    },
+  },
+  watch: {
+    items: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem("items", JSON.stringify(value));
+      },
     },
   },
 };
