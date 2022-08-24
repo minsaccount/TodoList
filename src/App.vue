@@ -2,8 +2,12 @@
   <div id="app">
     <h3 class="title">To do list</h3>
     <Header :receive="receive" />
-    <List :items="items" :changeCheck="changeCheck" />
-    <Footer />
+    <List
+      :items="items"
+      :changeCheck="changeCheck"
+      :handleDelete="handleDelete"
+    />
+    <Footer :items="items" :chengeSelect="chengeSelect" :handleClear='handleClear'/>
   </div>
 </template>
 
@@ -38,6 +42,19 @@ export default {
         }
       });
       console.log(id);
+    },
+    handleDelete(id) {
+      this.items = this.items.filter((i) => {
+        return i.id !== id;
+      });
+    },
+    chengeSelect(status) {
+      this.items.forEach((i) => {
+        i.finished = status;
+      });
+    },
+    handleClear() {
+      this.items = this.items.filter((i) => !i.finished);
     },
   },
 };

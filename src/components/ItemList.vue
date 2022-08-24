@@ -1,6 +1,12 @@
 <template>
   <div class="list">
-    <Item v-for="i in items" :key="i.id" :item="i" :changeCheck="changeCheck" />
+    <Item
+      v-for="i in items"
+      :key="i.id"
+      :item="i"
+      :changeCheck="changeCheck"
+      :handleDelete="handleDelete"
+    />
   </div>
 </template>
 
@@ -10,7 +16,7 @@ export default {
   components: {
     Item,
   },
-  props: ["items", "changeCheck"], //最好不要修改
+  props: ["items", "changeCheck", "handleDelete"], //最好不要修改
 };
 </script>
 
@@ -18,5 +24,4 @@ export default {
 .list {
   width: inherit;
 }
-
 </style>

@@ -8,16 +8,21 @@
       />
       <span>{{ item.name }}</span>
     </label>
-    <button class="button">删除</button>
+    <button class="button" @click="deleteItem(item.id)">删除</button>
   </li>
 </template>
 
 <script>
 export default {
-  props: ["item", "changeCheck"],
+  props: ["item", "changeCheck", "handleDelete"],
   methods: {
     handlecheck(id) {
       this.changeCheck(id);
+    },
+    deleteItem(id) {
+      if (confirm("确定删除吗？")) {
+        this.handleDelete(id);
+      }
     },
   },
 };

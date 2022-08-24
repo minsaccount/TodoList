@@ -3,7 +3,7 @@
     <input
       class="search"
       type="text"
-      placeholder="请输入添加的任务"
+      placeholder="请输入添加的任务，按回车键确认"
       v-model.trim="item"
       @keyup.enter="add"
     />
