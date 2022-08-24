@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ["items", "chengeSelect", "handleClear"],
+  props: ["items"],
   computed: {
     total() {
       return this.items.length;
@@ -26,14 +26,14 @@ export default {
         return this.total == this.finished;
       },
       set(value) {
-        this.chengeSelect(value);
+        this.$emit("select", value);
       },
     },
   },
   methods: {
     clearFinished() {
       if (confirm("确认删除已完成的事项吗？")) {
-        this.handleClear();
+        this.$emit('clear');
       }
     },
   },

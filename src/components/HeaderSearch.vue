@@ -13,7 +13,6 @@
 <script>
 import { nanoid } from "nanoid";
 export default {
-  props: ["receive"],
   data() {
     return {
       item: "",
@@ -29,7 +28,7 @@ export default {
         name: this.item,
         finished: false,
       };
-      this.receive(todoObj);
+      this.$emit("add", todoObj);
       this.item = "";
     },
   },

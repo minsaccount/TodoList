@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h3 class="title">To do list</h3>
-    <Header :receive="receive" />
+    <Header @add="addItem" />
     <List
       :items="items"
       :changeCheck="changeCheck"
@@ -9,15 +9,15 @@
     />
     <Footer
       :items="items"
-      :chengeSelect="chengeSelect"
-      :handleClear="handleClear"
+      @select="changeSelect"
+      @clear="handleClear"
     />
   </div>
 </template>
 
 <script>
 import Header from "./components/HeaderSearch.vue";
-import Footer from "./components/FooterSum.vue";
+import Footer from "./components/FooterSum.vue"; 
 import List from "./components/ItemList.vue";
 export default {
   name: "App",
@@ -32,7 +32,7 @@ export default {
     };
   },
   methods: {
-    receive(item) {
+    addItem(item) {
       this.items.unshift(item);
     },
     changeCheck(id) {
@@ -48,7 +48,7 @@ export default {
         return i.id !== id;
       });
     },
-    chengeSelect(status) {
+    changeSelect(status) {
       this.items.forEach((i) => {
         i.finished = status;
       });
