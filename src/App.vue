@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <SchoolInfo></SchoolInfo>
-    <StudentInfo></StudentInfo>
+    <h1>{{ msg }}{{studentName}}</h1>
+    <SchoolInfo :getSchoolName="getSchoolName"></SchoolInfo>
+    <StudentInfo @motio="getStudentName"></StudentInfo>
   </div>
 </template>
 
@@ -15,6 +16,21 @@ export default {
     SchoolInfo,
     StudentInfo,
   },
+  data() {
+    return {
+      msg: "你好啊！",
+      studentName: "",
+    };
+  },
+  methods: {
+    getSchoolName(value) {
+      console.log(value);
+    },
+    getStudentName(value) {
+      console.log(value);
+      this.studentName = value;
+    },
+  },
 };
 </script>
 
@@ -26,5 +42,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: rgb(129, 201, 248);
 }
 </style>

@@ -2,6 +2,8 @@
   <div class="student">
     <h3>姓名：{{ name }}</h3>
     <h3>年龄：{{ age }}</h3>
+    <button @click="sendStudentName">获取学生名</button>
+    <button @click="unbind">解绑motio事件</button>
   </div>
 </template>
 
@@ -13,7 +15,20 @@ export default {
       age: 22,
     };
   },
+  methods: {
+    sendStudentName() {
+      //出发Student组件身上的motio事件
+      this.$emit("motio", this.name);
+    },
+    unbind() {
+      this.$off('motio')
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+.student {
+  background-color: rgb(240, 240, 155);
+}
+</style>
