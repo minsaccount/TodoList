@@ -2,22 +2,14 @@
   <div id="app">
     <h3 class="title">To do list</h3>
     <Header @add="addItem" />
-    <List
-      :items="items"
-      :changeCheck="changeCheck"
-      :handleDelete="handleDelete"
-    />
-    <Footer
-      :items="items"
-      @select="changeSelect"
-      @clear="handleClear"
-    />
+    <List :items="items" />
+    <Footer :items="items" @select="changeSelect" @clear="handleClear" />
   </div>
 </template>
 
 <script>
 import Header from "./components/HeaderSearch.vue";
-import Footer from "./components/FooterSum.vue"; 
+import Footer from "./components/FooterSum.vue";
 import List from "./components/ItemList.vue";
 export default {
   name: "App",
@@ -64,6 +56,14 @@ export default {
         localStorage.setItem("items", JSON.stringify(value));
       },
     },
+  },
+  mounted() {
+    this.$bus.$on("changeCheck", this.changeCheck);
+    this.$bus.$on("handleDelete", this.handleDelete);
+  },
+  beforeDestroy() {
+       this.$bus.off('changeCheck')
+       this.$bus.off('handleDelete')
   },
 };
 </script>

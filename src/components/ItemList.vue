@@ -4,8 +4,6 @@
       v-for="i in items"
       :key="i.id"
       :item="i"
-      :changeCheck="changeCheck"
-      :handleDelete="handleDelete"
     />
   </div>
 </template>
@@ -16,7 +14,7 @@ export default {
   components: {
     Item,
   },
-  props: ["items", "changeCheck", "handleDelete"], //最好不要修改
+  props: ["items"], //最好不要修改
 };
 </script>
 

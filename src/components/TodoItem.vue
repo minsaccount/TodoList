@@ -14,14 +14,14 @@
 
 <script>
 export default {
-  props: ["item", "changeCheck", "handleDelete"],
+  props: ["item"],
   methods: {
     handlecheck(id) {
-      this.changeCheck(id);
+      this.$bus.$emit("changeCheck", id);
     },
     deleteItem(id) {
       if (confirm("确定删除吗？")) {
-        this.handleDelete(id);
+        this.$bus.$emit("handleDelete", id);
       }
     },
   },
