@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}{{studentName}}</h1>
-    <SchoolInfo :getSchoolName="getSchoolName"></SchoolInfo>
-    <StudentInfo @motio="getStudentName"></StudentInfo>
+    <h1>{{ msg }}</h1>
+    <SchoolInfo ></SchoolInfo>
+    <StudentInfo></StudentInfo>
   </div>
 </template>
 
@@ -23,15 +23,9 @@ export default {
     };
   },
   methods: {
-    getSchoolName(value) {
-      console.log(value);
-    },
-    getStudentName(value) {
-      console.log(value);
-      this.studentName = value;
-    },
-  },
-};
+    
+  },//
+  };
 </script>
 
 <style>
