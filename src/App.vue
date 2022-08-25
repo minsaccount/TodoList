@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import pubsub from "pubsub-js";
 import Header from "./components/HeaderSearch.vue";
 import Footer from "./components/FooterSum.vue";
 import List from "./components/ItemList.vue";
@@ -35,7 +36,7 @@ export default {
       });
       console.log(id);
     },
-    handleDelete(id) {
+    handleDelete(_, id) {
       this.items = this.items.filter((i) => {
         return i.id !== id;
       });
@@ -48,6 +49,13 @@ export default {
     handleClear() {
       this.items = this.items.filter((i) => !i.finished);
     },
+    updateItem(id,name){
+      this.items.forEach(i=>{
+        if(i.id==id){
+          i.name=name
+        }
+      })
+    }
   },
   watch: {
     items: {
@@ -58,12 +66,14 @@ export default {
     },
   },
   mounted() {
-    this.$bus.$on("changeCheck", this.changeCheck);
-    this.$bus.$on("handleDelete", this.handleDelete);
+    this.$bus.$on("changeCheck", this.changeCheck); //事件全局总线
+    this.pubId = pubsub.subscribe("handleDelete", this.handleDelete); //消息订阅
+    this.$bus.$on("updateItem",this.updateItem)
   },
   beforeDestroy() {
-       this.$bus.off('changeCheck')
-       this.$bus.off('handleDelete')
+    this.$bus.off("changeCheck");
+    pubsub.unsubscribe(this.pubId);
+    this.$bus.off("updateItem");
   },
 };
 </script>

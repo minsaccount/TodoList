@@ -6,13 +6,24 @@
         :checked="item.finished"
         @click="handlecheck(item.id)"
       />
-      <span>{{ item.name }}</span>
+      <input
+        v-show="item.isEdit"
+        type="text"
+        :value="item.name"
+        @blur="handleBlur(item, $event)"
+        ref="inputTitle"
+      />
+      <span v-show="!item.isEdit">{{ item.name }}</span>
     </label>
     <button class="button" @click="deleteItem(item.id)">删除</button>
+    <button class="button" v-show="!item.isEdit" @click="editItem(item)">
+      编辑
+    </button>
   </li>
 </template>
 
 <script>
+import pubsub from "pubsub-js";
 export default {
   props: ["item"],
   methods: {
@@ -21,8 +32,20 @@ export default {
     },
     deleteItem(id) {
       if (confirm("确定删除吗？")) {
-        this.$bus.$emit("handleDelete", id);
+        pubsub.publish("handleDelete", id);
       }
+    },
+    editItem(item) {
+      item.isEdit = true;
+      this.$nextTick(()=>{
+        this.$refs.inputTitle.focus()
+      })
+      
+    },
+    handleBlur(item, event) {
+      item.isEdit = false;
+      if (event.target.value)
+        this.$bus.$emit("updateItem", item.id, event.target.value);
     },
   },
 };

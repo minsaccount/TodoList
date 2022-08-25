@@ -27,6 +27,7 @@ export default {
         id: nanoid(),
         name: this.item,
         finished: false,
+        isEdit:false
       };
       this.$emit("add", todoObj);
       this.item = "";
