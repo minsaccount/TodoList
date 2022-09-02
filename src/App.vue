@@ -1,20 +1,16 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}{{studentName}}</h1>
-    <SchoolInfo :getSchoolName="getSchoolName"></SchoolInfo>
-    <StudentInfo @motio="getStudentName"></StudentInfo>
+    <h1>{{ msg }}</h1>
+    <Test />
   </div>
 </template>
 
 <script>
-import SchoolInfo from "./components/SchoolInfo.vue";
-import StudentInfo from "./components/StudentInfo.vue";
-
+import Test from "./components/TestChange";
 export default {
   name: "App",
   components: {
-    SchoolInfo,
-    StudentInfo,
+    Test,
   },
   data() {
     return {
@@ -22,15 +18,7 @@ export default {
       studentName: "",
     };
   },
-  methods: {
-    getSchoolName(value) {
-      console.log(value);
-    },
-    getStudentName(value) {
-      console.log(value);
-      this.studentName = value;
-    },
-  },
+  methods: {}, //
 };
 </script>
 
