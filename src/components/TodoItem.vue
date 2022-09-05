@@ -1,25 +1,27 @@
 <template>
-  <li>
-    <label class="title">
-      <input
-        type="checkbox"
-        :checked="item.finished"
-        @click="handlecheck(item.id)"
-      />
-      <input
-        v-show="item.isEdit"
-        type="text"
-        :value="item.name"
-        @blur="handleBlur(item, $event)"
-        ref="inputTitle"
-      />
-      <span v-show="!item.isEdit">{{ item.name }}</span>
-    </label>
-    <button class="button" @click="deleteItem(item.id)">删除</button>
-    <button class="button" v-show="!item.isEdit" @click="editItem(item)">
-      编辑
-    </button>
-  </li>
+  <transition name="todo" appear>
+    <li>
+      <label class="title">
+        <input
+          type="checkbox"
+          :checked="item.finished"
+          @click="handlecheck(item.id)"
+        />
+        <input
+          v-show="item.isEdit"
+          type="text"
+          :value="item.name"
+          @blur="handleBlur(item, $event)"
+          ref="inputTitle"
+        />
+        <span v-show="!item.isEdit">{{ item.name }}</span>
+      </label>
+      <button class="button" @click="deleteItem(item.id)">删除</button>
+      <button class="button" v-show="!item.isEdit" @click="editItem(item)">
+        编辑
+      </button>
+    </li>
+  </transition>
 </template>
 
 <script>
@@ -37,10 +39,9 @@ export default {
     },
     editItem(item) {
       item.isEdit = true;
-      this.$nextTick(()=>{
-        this.$refs.inputTitle.focus()
-      })
-      
+      this.$nextTick(() => {
+        this.$refs.inputTitle.focus();
+      });
     },
     handleBlur(item, event) {
       item.isEdit = false;
@@ -76,5 +77,20 @@ li:hover {
 }
 li:hover button {
   display: block;
+}
+.todo-enter-active {
+  animation: hello 1s linear reverse;
+}
+
+.todo-leave-active {
+  animation: hello 1s linear;
+}
+@keyframes hello {
+  form {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 </style>
