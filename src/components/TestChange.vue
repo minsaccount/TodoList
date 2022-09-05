@@ -1,9 +1,10 @@
 <template>
   <div>
     <button @click="isShow = !isShow">显示/隐藏</button>
-    <transition>
-      <h1 v-show="isShow">你好啊</h1>
-    </transition>
+    <transition-group appear>
+      <h1 v-show="isShow" key="0">你好啊</h1>
+      <h1 v-show="!isShow" key="1">motio</h1>
+    </transition-group>
   </div>
 </template>
 
@@ -11,7 +12,7 @@
 export default {
   data() {
     return {
-      isShow: false,
+      isShow: true,
     };
   },
 };
@@ -22,11 +23,11 @@ h1 {
   background-color: orange;
 }
 .v-enter-active {
-  animation: hello 1s reverse;
+  animation: hello 1s linear reverse;
 }
 
 .v-leave-active {
-  animation: hello 1s;
+  animation: hello 1s linear;
 }
 @keyframes hello {
   form {
