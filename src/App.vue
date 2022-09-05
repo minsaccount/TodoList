@@ -1,22 +1,24 @@
 <template>
   <div id="app">
-    <Test />
+    <button @click="getStudents">获取学生信息</button>
   </div>
 </template>
 
 <script>
-import Test from "./components/TestChange";
+import axios from "axios";
 export default {
   name: "App",
-  components: {
-    Test,
+  methods: {
+    getStudents() {
+      axios.get("http://localhost:8080/api/students").then(
+        (response) => {
+          console.log("请求成功了", response.data);
+        },
+        (error) => {
+          console.log("请求失败了", error.message);
+        }
+      );
+    },
   },
-  data() {
-    return {
-      msg: "你好啊！",
-      studentName: "",
-    };
-  },
-  methods: {}, //
 };
 </script>
