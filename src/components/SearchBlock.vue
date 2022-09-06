@@ -23,12 +23,27 @@ export default {
   },
   methods: {
     getUsers() {
+      this.$bus.$emit("userList", {
+        isFirst: false,
+        isLoading: true,
+        errMsg: "",
+        users: [],
+      });
       axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
         (response) => {
-          this.$bus.$emit("userList", response.data.items);
+          this.$bus.$emit("userList", {
+            isLoading: false,
+            errMsg: "",
+            users: response.data.items,
+          });
         },
         (error) => {
           console.log("请求失败", error.message);
+          this.$bus.$emit("userList", {
+            isLoading: false,
+            errMsg: error.message,
+            users: [],
+          });
         }
       );
     },
