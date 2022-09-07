@@ -1,41 +1,30 @@
 <template>
   <div id="app">
-    <h1>{{ msg }}</h1>
-    <SchoolInfo ></SchoolInfo>
-    <StudentInfo></StudentInfo>
+    <CategoryCard title="美食" :items="food" />
+    <CategoryCard title="电影" :items="film" />
+    <CategoryCard title="游戏" :items="game" />
   </div>
 </template>
 
 <script>
-import SchoolInfo from "./components/SchoolInfo.vue";
-import StudentInfo from "./components/StudentInfo.vue";
-
+import CategoryCard from "./components/CategoryCard";
 export default {
   name: "App",
   components: {
-    SchoolInfo,
-    StudentInfo,
+    CategoryCard,
   },
   data() {
     return {
-      msg: "你好啊！",
-      studentName: "",
+      food: ["薯片", "可乐", "蛋糕"],
+      film: ["《你的名字》", "《情书》", "《言叶之庭》"],
+      game: ["光遇", "双人成行", "动森"],
     };
   },
-  methods: {
-    
-  },//
-  };
+};
 </script>
-
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  background-color: rgb(129, 201, 248);
+  display: flex;
+  justify-content: space-around;
 }
 </style>

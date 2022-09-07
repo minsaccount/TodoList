@@ -1,7 +1,6 @@
 <template>
   <div class="school">
     <h3>学校名称：{{ name }}</h3>
-
   </div>
 </template>
 
@@ -12,7 +11,6 @@ export default {
       name: "Nanjing Normal University",
     };
   },
-
 };
 </script>
 
