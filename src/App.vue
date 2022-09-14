@@ -1,15 +1,15 @@
 <template>
 	<div id="app">
-		<CardList />
+		<MyCounter />
 	</div>
 </template>
 
 <script>
-import CardList from "./components/CardList.vue"
+import MyCounter from "./components/MyCounter.vue"
 export default {
 	name: "App",
 	components: {
-		CardList
+		MyCounter
 	}
 }
 </script>
