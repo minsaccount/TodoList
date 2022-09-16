@@ -3,6 +3,7 @@
 		<MyCounter />
 		<hr />
 		<MyPerson />
+		<router-view></router-view>
 	</div>
 </template>
 
