@@ -1,8 +1,16 @@
 import Vue from "vue"
 import Vuex from "vuex"
 
+import countOptions from "./count"
+import personOptions from "./person"
+
 Vue.use(Vuex)
 
+export default new Vuex.Store({
+	modules: { countAbout: countOptions, personAbout: personOptions }
+})
+
+/*
 const actions = {
 	jiaOdd(context, value) {
 		if (context.state.sum % 2) context.commit("JIA", value)
@@ -38,6 +46,6 @@ const getters = {
 		console.log(state)
 		return state.sum * 10
 	}
-}
 
 export default new Vuex.Store({ actions, mutations, state, getters })
+}*/

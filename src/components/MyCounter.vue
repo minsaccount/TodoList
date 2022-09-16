@@ -1,9 +1,10 @@
 <!--vuex -->
 <template>
 	<div>
-		<h1>当前求和：{{ sum }}</h1>
+		<h1>当前求和：{{ countAbout.sum }}</h1>
 		<h1>当前求和结果放大十倍：{{ bigSum }}</h1>
-		<h3>我在{{ school }},学习{{ subject }}</h3>
+		<h3>我在{{ countAbout.school }},学习{{ countAbout.subject }}</h3>
+		<h3 style="color: red">下方组件的总人数是：{{ personList.length }}</h3>
 		<select v-model.number="num">
 			<option value="1">1</option>
 			<option value="2">2</option>
@@ -26,8 +27,9 @@ export default {
 		}
 	},
 	computed: {
-		...mapState(["sum", "school", "subject"]),
-		...mapGetters(["bigSum"])
+		...mapState(["countAbout", ["sum", "school", "subject"]]),
+		...mapState("personAbout", ["personList"]),
+		...mapGetters("countAbout", ["bigSum"])
 	},
 	methods: {
 		// increment() {
@@ -36,17 +38,17 @@ export default {
 		// decrement() {
 		// 	this.$store.commit("JIAN", this.num)
 		// },
-
-		...mapMutations({ increment: "JIA", decrement: "JIAN" }),
-
+		...mapMutations("countAbout", { increment: "JIA", decrement: "JIAN" }),
 		// incrementOdd() {
 		// 	if (this.$store.state.sum % 2) this.$store.dispatch("jiaOdd", this.num)
 		// },
 		// incrementWait() {
 		// 	this.$store.dispatch("jiaWait", this.num)
 		// },
-
-		...mapActions({ incrementOdd: "jiaOdd", incrementWait: "jiaWait" })
+		...mapActions("countAbout", {
+			incrementOdd: "jiaOdd",
+			incrementWait: "jiaWait"
+		})
 	}
 }
 </script>
