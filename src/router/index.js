@@ -13,6 +13,7 @@ const router = new VueRouter({
 					component: () => import("../pages/HomeMessage.vue"),
 					children: [
 						{
+							name: "xiangqing",
 							path: "detail",
 							component: () => import("../pages/MessageDetail.vue")
 						}
@@ -25,6 +26,7 @@ const router = new VueRouter({
 			]
 		},
 		{
+			name: "guanyu",
 			path: "/about",
 			component: () => import("../pages/MyAbout.vue")
 		}
