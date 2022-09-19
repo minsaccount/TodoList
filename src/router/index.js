@@ -3,22 +3,33 @@ import VueRouter from "vue-router"
 
 //创建路由器
 const router = new VueRouter({
-	router: [
+	routes: [
 		{
-			path: "./myCounter",
-			redirect: "./myCounter",
-			component: () => {
-				"../components/MyCounter.vue"
-			}
+			path: "/home",
+			component: () => import("../pages/MyHome.vue"),
+			children: [
+				{
+					path: "message",
+					component: () => import("../pages/HomeMessage.vue"),
+					children: [
+						{
+							path: "detail",
+							component: () => import("../pages/MessageDetail.vue")
+						}
+					]
+				},
+				{
+					path: "news",
+					component: () => import("../pages/HomeNews.vue")
+				}
+			]
 		},
 		{
-			path: "./myPerson",
-			component: () => {
-				"../components/MyPerson.vue"
-			}
+			path: "/about",
+			component: () => import("../pages/MyAbout.vue")
 		}
 	]
 })
 
-//保留路由器
+//暴露路由器
 export default router
