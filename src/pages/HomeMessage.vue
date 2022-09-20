@@ -10,8 +10,10 @@
 							title: item.title
 						}
 					}"
-					>{{ item.title }} </router-link
-				>&nbsp;&nbsp;
+					>{{ item.title }}
+					<button @click="pushShow(item)">push</button>
+					<button @click="replaceShow(item)">replace</button>
+				</router-link>
 			</li>
 		</ul>
 		<hr />
@@ -31,6 +33,26 @@ export default {
 				{ id: "004", title: "消息004" },
 				{ id: "005", title: "消息005" }
 			]
+		}
+	},
+	methods: {
+		pushShow(item) {
+			this.$router.push({
+				name: "xiangqing",
+				query: {
+					id: item.id,
+					title: item.title
+				}
+			})
+		},
+		replaceShow(item) {
+			this.$router.replace({
+				name: "xiangqing",
+				query: {
+					id: item.id,
+					title: item.title
+				}
+			})
 		}
 	}
 }

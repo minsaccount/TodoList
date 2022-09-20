@@ -1,12 +1,13 @@
 <template>
 	<ul>
-		<li>消息编号：{{ this.$route.query.id, }}</li>
-		<li>消息规则：{{ this.$route.query.title }}</li>
+		<li>消息编号：{{ id, }}</li>
+		<li>消息规则：{{ title }}</li>
 	</ul>
 </template>
 
 <script>
 export default {
-	name: "MessageDetail"
+	name: "MessageDetail",
+	props: ["id", "title"]
 }
 </script>

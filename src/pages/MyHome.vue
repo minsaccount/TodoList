@@ -20,7 +20,9 @@
 					>
 				</li>
 			</ul>
-			<router-view></router-view>
+			<keep-alive include="HomeNews">
+				<router-view></router-view>
+			</keep-alive>
 		</div>
 	</div>
 </template>
