@@ -3,20 +3,24 @@ import VueRouter from "vue-router"
 
 //创建路由器
 const router = new VueRouter({
+	mode: "history",
 	routes: [
 		{
 			name: "zhuye",
 			path: "/home",
+			meta: { title: "主页" },
 			component: () => import("../pages/MyHome.vue"),
 			children: [
 				{
 					name: "xiaoxi",
 					path: "message",
+					meta: { isAuth: true, title: "消息" }, // 存放路由元信息
 					component: () => import("../pages/HomeMessage.vue"),
 					children: [
 						{
 							name: "xiangqing",
 							path: "detail",
+							meta: { title: "详情" },
 							component: () => import("../pages/MessageDetail.vue"),
 							props: ($route) => {
 								return {
@@ -30,13 +34,24 @@ const router = new VueRouter({
 				{
 					name: "xinwen",
 					path: "news",
+					meta: { isAuth: true, title: "新闻" },
 					component: () => import("../pages/HomeNews.vue")
+					// beforeEnter: (to, from, next) => {
+					// 	console.log("独享路由守卫", to, from)
+					// 	if (to.meta.isAuth) {
+					// 		if (localStorage.getItem("school") == "nnu") next()
+					// 		else console.log("无权限！")
+					// 	} else {
+					// 		next()
+					// 	}
+					// }
 				}
 			]
 		},
 		{
 			name: "guanyu",
 			path: "/about",
+			meta: { title: "关于" },
 			component: () => import("../pages/MyAbout.vue")
 		}
 	]
@@ -44,13 +59,20 @@ const router = new VueRouter({
 
 //全局前置路由守卫
 router.beforeEach((to, from, next) => {
-	console.log("*", to, from)
-	if (to.name == "xiaoxi" || to.name == "xinwen") {
+	console.log("前置路由守卫", to, from)
+	// if (to.name == "xiaoxi" || to.name == "xinwen")
+	if (to.meta.isAuth) {
 		if (localStorage.getItem("school") == "nnu") next()
 		else console.log("无权限！")
 	} else {
 		next()
 	}
+})
+
+//全局后置路由守卫
+router.afterEach((to, from) => {
+	document.title = to.meta.title || "vue-study"
+	console.log("后置路由守卫", to, from)
 })
 
 //暴露路由器
